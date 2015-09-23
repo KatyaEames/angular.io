@@ -82,8 +82,13 @@ include ../../../../_includes/_util-fns
     This is a more robust, less error-prone approach, that we can maintain as our application evolves.
 
     Create this **package.json** file in the root folder:
-  +makeJson('gettingstarted', 'ts/package.json', 'package.json', { paths: 'name, version, dependencies '},
+  +makeJson('gettingstarted/ts/package.json', { paths: 'name, version, dependencies '}, null,
              {pnk: [/(angular2)/, /(systemjs)/, /(traceur)/] })
+  :markdown
+    Now we install our script packages with one command
+
+  pre.prettyprint.lang-bash
+    code npm install
   :markdown
     Now we install our script packages with one command
 
@@ -113,7 +118,7 @@ include ../../../../_includes/_util-fns
     This configuration file also simplifies the TypeScript compilation command we'll run later in this story.
 
     Create *tsconfig.json* now with the following JSON content:
-  +makeJson('gettingstarted', 'ts/src/tsconfig.json', 'tsconfig.json')
+  +makeJson('gettingstarted/ts/src/tsconfig.json', null, 'tsconfig.json')
 
 .l-main-section
   :markdown
@@ -121,9 +126,9 @@ include ../../../../_includes/_util-fns
 
     Add a new `index.html` file to the project folder and enter the following HTML
 
-  +makeExample('gettingstarted/ts/src/index.html', null, 'index.html'
-     {pnk: [/(angular2\.dev\.js)/, /(system\.src\.js)/, /(traceur-runtime\.js)/],
-      otl:  [/(&lt;my-app[\s\S]*\/my-app&gt;)/, /(System[\s\S]*)/]})
+  +makeExample('gettingstarted/ts/src/index.html', null, 'index.html',
+    {pnk: [/(angular2\.dev\.js)/, /(system\.src\.js)/, /(traceur-runtime\.js)/],
+     otl:  [/(&lt;my-app[\s\S]*\/my-app&gt;)/, /(System[\s\S]*)/]})
 
   .l-sub-section
     :markdown
@@ -134,7 +139,6 @@ include ../../../../_includes/_util-fns
 
       The final inline script tells *system.js* to load another JavaScript file named "app".
       We haven't written that file yet; let's do so now.
-
 
 .l-main-section
   :markdown
@@ -187,7 +191,6 @@ include ../../../../_includes/_util-fns
 
   +makeExample('gettingstarted/ts/src/app.ts', null, 'app.ts')
 
-
 .l-main-section
   :markdown
     ## Compile the TypeScript to JavaScript
@@ -239,7 +242,8 @@ include ../../../../_includes/_util-fns
 
 .l-main-section
   :markdown
-    ## Add Type Definition Files (optional)
+    ## SHOW FINAL PROJECT AND FILE STRUCTURE
+    ## Add Type Definition Files (MOVE...NON OPTIONAL)
 
     Code editors (such as [Visual Studio Code](https://code.visualstudio.com/) and
     [Web Storm](https://www.jetbrains.com/webstorm/features/))
