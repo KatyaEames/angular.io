@@ -1,4 +1,3 @@
-<!-- #docregion -->
 <!DOCTYPE html>
 <html>
 
@@ -9,9 +8,12 @@
 </head>
 
 <body>
-  <my-app></my-app>
+  <my-app>Loading...</my-app>
   <script>
-    System.import('app.js');
+    System.config({
+      packages: {'app': {defaultExtension: 'js'}}
+    });
+    System.import('app/app');
   </script>
 </body>
 
