@@ -50,14 +50,44 @@ include ../../../../_includes/_util-fns
   pre.prettyprint.lang-bash
     code npm install -g live-server
 
+  .l-sub-section
+    :markdown
+      Our success depends upon installing compatible versions of these tools.
+      Confirm your version numbers in a terminal window with these commands:
+    table
+      tr
+        th Command
+        th Versions
+      tr
+        td
+          code node -v
+        td 0.10.* - 0.12.*  &nbsp;&nbsp&nbspBut not 4.0.0 !!!
+      tr
+        td
+          code npm -v
+        td 2.11+  (3.* is fine)
+      tr
+        td
+          code tsc -v
+        td 1.6+
+      tr
+        td
+          code tsd --version
+        td 0.6.5+
+      tr
+        td
+          code live-server -v
+        td 0.8+
+
 .l-main-section
   :markdown
     ## Create the application project structure
 
     Create a new folder to hold our application project, perhaps like this:
-
-  pre.prettyprint.lang-bash
-    code mkdir angular2-getting-started && cd angular2-getting-started
+    ```
+    mkdir angular2-getting-started
+    cd    angular2-getting-started
+    ```
 
   :markdown
     We'll refer to this as our application's **root folder**.
@@ -100,7 +130,7 @@ include ../../../../_includes/_util-fns
     We'll install these package with `npm` and create an npm **`package.json`** configuration file
     that to maintain future packages as our application evolves.
 
-    In terminal window set to the **root** folder we say:
+    In a terminal window, go to the **root** folder and type:
     ```
     npm init -y
     npm install --save angular2@2.0.0-alpha.37 systemjs@0.19.2
@@ -182,10 +212,13 @@ include ../../../../_includes/_util-fns
       There's an element called `<my-app>` in the `<body>`. This is a placeholder for the *root* of our
       application. Angular will display our application content here.
 
-      The final inline script first configures *system.js* and then tells it to load the JavaScript file named "app"
-      in the `app` folder.
+      The final inline script first configures the **`system.js`** module loader and then tells it
+      to import the JavaScript file named `app` in the `app/` folder.
 
-      That's going to be our main application file.  We haven't written it yet; let's do so now.
+      Subsequent module imports are triggered by a cascade of `import` statements
+      beginning within `app.ts` itself.
+
+      **`app.ts`** is our main application file.  We haven't written it yet. Let's do so now.
 
 .l-main-section
   :markdown
@@ -193,7 +226,7 @@ include ../../../../_includes/_util-fns
 
     **Change to the `src/app`** directory and **create an `app.ts` file**.
 
-    Then add an empty class to it called `AppComponent` as follows:
+    Add an empty class to it called `AppComponent` as follows:
 
   +makeExample('gettingstarted/ts/src/app/app.ts', 'class')(format=".")
 
@@ -201,12 +234,12 @@ include ../../../../_includes/_util-fns
     We won't ask this class to do anything. It's just an empty, meaningless class until we tell
     Angular about it by decorating it with some *annotations*.
 
-    We import the `component` and `view` *annotations* that we need from the Angular library at the top of the file:
+    Import the `component` and `view` *annotations* that we need from the Angular library at the top of the file:
 
   +makeExample('gettingstarted/ts/src/app/app.ts', 'import')(format=".")
 
   :markdown
-    Then we apply those annotations to the `AppComponent` class by writing the following lines
+    Apply those annotations to the `AppComponent` class by writing the following lines
     just above the class definition:
 
   +makeExample('gettingstarted/ts/src/app/app.ts', 'class-w-annotations')
